@@ -27,22 +27,34 @@ class Calculator extends React.Component {
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
     return (
-      <div>
-        <TemperatureInput
-          scale="c"
-          temperature={celsius}
-          onTemperatureChange={this.handleCelsiusChange} />
+        <FancyBorder color="blue">
 
-        <TemperatureInput
-          scale="f"
-          temperature={fahrenheit}
-          onTemperatureChange={this.handleFahrenheitChange} />\
-          
-        <BoilingVerdict
-          celsius={parseFloat(celsius)} />
-      </div>
+          <TemperatureInput
+            scale="c"
+            temperature={celsius}
+            onTemperatureChange={this.handleCelsiusChange} />
+
+          <TemperatureInput
+            scale="f"
+            temperature={fahrenheit}
+            onTemperatureChange={this.handleFahrenheitChange} />
+
+          <BoilingVerdict
+            celsius={parseFloat(celsius)} />
+
+        </FancyBorder>
     );
   }
+}
+
+
+function FancyBorder(props) {
+  console.log("----- props children --", props.children)
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
 }
 
 
